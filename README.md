@@ -1,4 +1,4 @@
-# DataApp
+# Star Wars Data App
 
 ## Development server
 
