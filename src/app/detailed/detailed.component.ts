@@ -1,5 +1,6 @@
 import { Location } from '@angular/common';
 import { Component } from '@angular/core';
+import { map } from 'rxjs/operators';
 
 import { ApiService } from '../api.service';
 import { PersonService } from '../person.service';
@@ -11,6 +12,7 @@ import { PersonService } from '../person.service';
 })
 export class DetailedComponent {
   person: any;
+  names: Array<any> = [];
 
   constructor(
     private apiService: ApiService,
@@ -18,19 +20,17 @@ export class DetailedComponent {
     private personService: PersonService
   ) {
     this.person = this.personService.getPerson();
+    this.person.films.forEach(film => this.getFilmName(film));
   }
 
   backBtn() {
     this.location.back();
   }
 
-  // getFilmNames(films: Array<any>) {
-  //   let names = '';
-  //   films.forEach(film =>
-  //     this.apiService
-  //       .getFilm(film)
-  //       .pipe(map(response => (names += response.title + ', ')))
-  //   );
-  //   return names;
-  // }
+  getFilmName(film: any) {
+    this.apiService
+      .getFilm(film)
+      .pipe(map((response: any) => response.title))
+      .subscribe((title: string) => this.names.push(title));
+  }
 }

@@ -5,4 +5,11 @@
   <mat-list-item>{{ person.birth_year }}</mat-list-item>
 </mat-list>
 
+<h3 mat-subheader>Films</h3>
+<mat-list *ngFor="let film of names">
+  <mat-list-item>{{ film }}</mat-list-item>
+</mat-list>
+
+<br/>
+
 <button mat-button color="primary" (click)="backBtn()">Back</button>
