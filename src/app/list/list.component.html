@@ -1,0 +1,5 @@
+<mat-list *ngFor="let person of (people | async)?.results">
+  <mat-list-item>
+    <span (click)="onClick(person)">{{ person.name }}</span>
+  </mat-list-item>
+</mat-list>
